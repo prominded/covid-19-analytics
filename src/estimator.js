@@ -1,4 +1,4 @@
-const region = {
+const regionData = {
     name: "Africa",
     avgAge: 19,
     avgDailyIncomeInUSD: 5,
@@ -55,7 +55,7 @@ const impactEstimatorOutput = (data) => ({
     }
 });
 
-export { impactEstimatorOutput, region, populationData, hospitalBedsData, normalizeDays };
+export { impactEstimatorOutput, regionData, populationData, hospitalBedsData, normalizeDays };
 
 const covid19ImpactEstimator = (data) => data;
 
