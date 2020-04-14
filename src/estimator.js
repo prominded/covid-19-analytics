@@ -1,18 +1,18 @@
-const region = {
+const region = ({
     name: "Africa",
     avgAge: 19,
     avgDailyIncomeInUSD: 5,
     avgDailyIncomePopulation: 0.71
-};
+});
 
-const populationData = {
+const populationData = ({
     getDefaultPopulation: () => 66622705,
     getPopulation: (val) => val
-}
+});
 
-const hospitalBedsData = {
+const hospitalBedsData = ({
     getDefaultBeds: () => 1380614
-}
+});
 
 
 
