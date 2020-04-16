@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-multiple-empty-lines */
 /* eslint-disable indent */
 /* eslint-disable no-trailing-spaces */
@@ -35,7 +36,10 @@ function processForm(e) {
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
- const impForm = document.getElementById('impactForm');
+ const impForm = document.getElementById('form');
+  console.log("Form Object");
+  console.log(impForm);
+  
   document.getElementById('population').value = populationData.getDefaultPopulation();
   document.getElementById('totalHospitalBeds').value = hospitalBedsData.getDefaultBeds();
   impForm.addEventListener('submit', processForm(e));
