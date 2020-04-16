@@ -9,7 +9,8 @@ import covid19ImpactEstimator,
 {
  impactEstimatorOutput, regionData, populationData,
   hospitalBedsData, normalizeDays 
-} from './estimator';
+// eslint-disable-next-line import/extensions
+} from './estimator.js';
 
 function processForm(e) {
   e.preventDefault();
