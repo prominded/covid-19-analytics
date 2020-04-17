@@ -15,6 +15,8 @@ import covid19ImpactEstimator,
 
 function processForm(e) {
   e.preventDefault();
+  console.log("impact Object...beginining.");
+
   const data = {
     pType: "Days",
     tElapse: normalizeDays(document.getElementById('periodType'), document.getElementById('timeToElapse')),
@@ -23,7 +25,7 @@ function processForm(e) {
     tBeds: document.getElementById('totalHospitalBeds')
 };
 
- const imputData = covid19ImpactEstimator({
+covid19ImpactEstimator({
     region: regionData, 
     periodType: data.pType,
     timeToElapse: data.tElapse, 
@@ -31,17 +33,21 @@ function processForm(e) {
     population: data.pop, 
     totalHospitalBeds: data.tBeds 
  });
+  console.log("impact Object...");
 
- const outputData = impactEstimatorOutput(imputData);
+  impactEstimatorOutput(covid19ImpactEstimator);
+  console.log(`Hello there, ${impactEstimatorOutput.infectionsByRequestedTime}`);
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
  const impForm = document.getElementById('form');
-  console.log("Form Object");
+  console.log("My Form Object");
   console.log(impForm);
   
   document.getElementById('population').value = populationData.getDefaultPopulation();
   document.getElementById('totalHospitalBeds').value = hospitalBedsData.getDefaultBeds();
+  console.log("impact Object...end.");
+
   impForm.addEventListener('submit', processForm(e));
 });
 
