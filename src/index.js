@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable no-multiple-empty-lines */
 /* eslint-disable indent */
@@ -16,39 +17,51 @@ import covid19ImpactEstimator,
 function processForm(e) {
   e.preventDefault();
   console.log("impact Object...beginining.");
+  console.log(document.getElementById('reportedCases').value);
+  console.log(document.getElementById('population').value);
+  alert(document.getElementById('population').value);
 
-  const data = {
+
+  const formData = {
     pType: "Days",
-    tElapse: normalizeDays(document.getElementById('periodType'), document.getElementById('timeToElapse')),
-    rCases: document.getElementById('reportedCases'),
-    pop: document.getElementById('population'),
-    tBeds: document.getElementById('totalHospitalBeds')
+    tElapse: normalizeDays(document.getElementById('periodType').value, document.getElementById('timeToElapse').value),
+    rCases: document.getElementById('reportedCases').value,
+    pop: document.getElementById('population').value,
+    tBeds: document.getElementById('totalHospitalBeds').value
 };
 
-covid19ImpactEstimator({
-    region: regionData, 
-    periodType: data.pType,
-    timeToElapse: data.tElapse, 
-    reportedCases: data.rCases,
-    population: data.pop, 
-    totalHospitalBeds: data.tBeds 
- });
-  console.log("impact Object...");
 
-  impactEstimatorOutput(covid19ImpactEstimator);
-  console.log(`Hello there, ${impactEstimatorOutput.infectionsByRequestedTime}`);
+  console.log(regionData);
+  
+
+const data = covid19ImpactEstimator({
+    region: regionData, 
+    periodType: formData.pType,
+    timeToElapse: formData.tElapse, 
+    reportedCases: formData.rCases,
+    population: formData.pop, 
+    totalHospitalBeds: formData.tBeds 
+ });
+  console.log(data.reportedCases);
+  console.log(data.region.name);
+
+
+  console.log(`impact Object... ${data.reportedCases}`);
+
+  const result = impactEstimatorOutput(data);
+  console.log(result);
 }
 
-document.addEventListener('DOMContentLoaded', (e) => {
- const impForm = document.getElementById('form');
+document.addEventListener('DOMContentLoaded', (event) => {
   console.log("My Form Object");
-  console.log(impForm);
   
   document.getElementById('population').value = populationData.getDefaultPopulation();
   document.getElementById('totalHospitalBeds').value = hospitalBedsData.getDefaultBeds();
-  console.log("impact Object...end.");
-
-  impForm.addEventListener('submit', processForm(e));
 });
+
+const impButton = document.getElementById('impactButton');
+console.log(impButton);
+impButton.addEventListener('click', (e) => processForm(e));
+
 
 
